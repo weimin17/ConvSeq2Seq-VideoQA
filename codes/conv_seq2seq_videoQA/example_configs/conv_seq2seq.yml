@@ -1,0 +1,22 @@
+model: ConvSeq2Seq
+model_params:
+  embedding.dim: 256
+  encoder.class: seq2seq.encoders.ConvEncoderFairseq
+  encoder.params:
+    cnn.layers: 4
+    cnn.nhids: 256,256,256,256
+    cnn.kwidths: 3,3,3,3
+  decoder.class: seq2seq.decoders.ConvDecoderFairseq
+  decoder.params:
+    cnn.layers: 3
+    cnn.nhids: 256,256,256
+    cnn.kwidths: 3,3,3
+  optimizer.name: Momentum
+  optimizer.params:
+    momentum: 0.99
+    use_nesterov: True     
+  optimizer.learning_rate: 0.25
+  optimizer.clip_gradients: 0.1
+  source.max_seq_len: 50
+  source.reverse: false
+  target.max_seq_len: 50
